@@ -53,6 +53,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Archivo', sans-serif;
             background-color: #f8f9fa;
@@ -112,7 +115,7 @@
 </head>
 <body class="font-archivo">
     <!-- Header -->
-    <header class="py-6 px-4 md:px-8 lg:px-16 bg-white shadow-sm">
+    <header class="py-6 px-4 md:px-8 lg:px-16 bg-white shadow-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-header">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-3xl font-bold text-dark">Correo<span class="text-primary">.gt</span></div>
             <nav class="hidden md:flex space-x-8">
@@ -136,6 +139,9 @@
             </div>
         </div>
     </header>
+
+    <!-- Espacio para compensar el header fijo -->
+    <div class="h-24 md:h-28"></div>
 
     <!-- Hero Section -->
     <section class="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-light">
@@ -237,7 +243,7 @@
                             Soporte técnico
                         </li>
                     </ul>
-                    <a href="#contacto" class="btn-primary block text-center w-full" data-plan="individual">Seleccionar</a>
+                    <a href="https://dash.appnodo.com" target="_blank" class="btn-primary block text-center w-full" data-plan="individual">Seleccionar</a>
                 </div>
                 
                 <!-- Start Plan -->
@@ -272,7 +278,7 @@
                             Configuración asistida
                         </li>
                     </ul>
-                    <a href="#contacto" class="btn-primary block text-center w-full" data-plan="start">Seleccionar</a>
+                    <a href="https://dash.appnodo.com" target="_blank" class="btn-primary block text-center w-full" data-plan="start">Seleccionar</a>
                 </div>
                 
                 <!-- Custom Plan -->
@@ -306,7 +312,7 @@
                             Configuración personalizada
                         </li>
                     </ul>
-                    <a href="#contacto" class="btn-primary block text-center w-full" data-plan="personalizado">Seleccionar</a>
+                    <a href="https://dash.appnodo.com" target="_blank" class="btn-primary block text-center w-full" data-plan="personalizado">Seleccionar</a>
                 </div>
             </div>
         </div>
@@ -323,23 +329,72 @@
                     Completa el formulario y nos pondremos en contacto contigo para configurar tu correo corporativo.
                 </p>
                 <form id="contact-form" class="space-y-6">
-                    <input type="hidden" id="plan-selected" name="plan" value="">
+                    <!-- Selección de plan -->
+                    <div>
+                        <label class="block text-lg font-medium text-dark mb-2">Plan de interés</label>
+                        <select id="plan-selected" name="plan" class="input-field">
+                            <option value="">Selecciona un plan</option>
+                            <option value="individual">Individual - $20/año</option>
+                            <option value="start">Start - $50/año</option>
+                            <option value="personalizado">Personalizado - $10/correo/año</option>
+                        </select>
+                    </div>
+                    <!-- Datos personales -->
                     <div>
                         <label for="name" class="block text-lg font-medium text-dark mb-2">Nombre</label>
                         <input type="text" id="name" name="name" class="input-field" placeholder="Tu nombre" required>
                     </div>
+                    
+                    <!-- Datos de contacto dinámicos -->
                     <div>
-                        <label for="email" class="block text-lg font-medium text-dark mb-2">Correo electrónico</label>
-                        <input type="email" id="email" name="email" class="input-field" placeholder="tu@correo.com" required>
+                        <label class="block text-lg font-medium text-dark mb-2">Datos de contacto</label>
+                        <div id="contact-fields" class="space-y-4">
+                            <!-- Email principal (siempre visible) -->
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                                <div class="md:w-1/4">
+                                    <select name="contact_type_0" class="input-field" disabled>
+                                        <option value="email" selected>Email</option>
+                                    </select>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <input type="email" id="email" name="email_0" class="input-field" placeholder="tu@correo.com" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Primer campo adicional (WhatsApp por defecto) -->
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                                <div class="md:w-1/4">
+                                    <select name="contact_type_1" class="input-field contact-type">
+                                        <option value="">Tipo de contacto</option>
+                                        <option value="email">Email</option>
+                                        <option value="whatsapp" selected>WhatsApp</option>
+                                        <option value="telefono">Teléfono</option>
+                                    </select>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <input type="tel" name="contact_value_1" class="input-field contact-value" placeholder="Número con código de país">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Botón para agregar más campos de contacto -->
+                        <div class="mt-4">
+                            <button type="button" id="add-contact" class="text-primary font-medium flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                                </svg>
+                                Agregar otro contacto
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                        <label for="whatsapp" class="block text-lg font-medium text-dark mb-2">WhatsApp</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" class="input-field" placeholder="Tu número de WhatsApp" required>
-                    </div>
+                    
+                    <!-- Mensaje -->
                     <div>
                         <label for="message" class="block text-lg font-medium text-dark mb-2">Mensaje (opcional)</label>
                         <textarea id="message" name="message" rows="4" class="input-field" placeholder="Cuéntanos sobre tu negocio o cualquier pregunta que tengas"></textarea>
                     </div>
+                    
+                    <!-- Botón de envío -->
                     <div class="pt-4">
                         <button type="submit" class="btn-primary w-full">
                             Enviar Solicitud
@@ -371,15 +426,98 @@
     <!-- JavaScript -->
     <script>
         $(document).ready(function() {
+            // Header compacto al hacer scroll
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#main-header').addClass('py-2').removeClass('py-6');
+                } else {
+                    $('#main-header').removeClass('py-2').addClass('py-6');
+                }
+            });
+            
             // Mobile menu toggle
             $('#mobile-menu-button').click(function() {
                 $('#mobile-menu').toggleClass('hidden');
             });
             
-            // Set plan selection
+            // Navegación suave para enlaces internos
+            $('a[href^="#"]').on('click', function(event) {
+                if (this.hash !== '') {
+                    event.preventDefault();
+                    
+                    const hash = this.hash;
+                    const headerHeight = $('header').outerHeight();
+                    
+                    // Cerrar menú móvil si está abierto
+                    $('#mobile-menu').addClass('hidden');
+                    
+                    // Scroll suave con offset para el header fijo (más rápido)
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - headerHeight
+                    }, 400, function() {
+                        // Agregar el hash a la URL después de completar el scroll
+                        window.location.hash = hash;
+                    });
+                }
+            });
+            
+            // Set plan selection cuando se hace clic en los botones de plan
             $('[data-plan]').click(function() {
                 const plan = $(this).data('plan');
                 $('#plan-selected').val(plan);
+            });
+            
+            // Variables para el manejo de campos de contacto
+            let contactCounter = 2; // Comenzamos en 2 porque ya tenemos 0 (email principal) y 1 (primer campo adicional)
+            
+            // Habilitar/deshabilitar campo de valor según selección de tipo
+            $(document).on('change', '.contact-type', function() {
+                const valueField = $(this).closest('div').parent().find('.contact-value');
+                if ($(this).val() === '') {
+                    valueField.prop('disabled', true).val('');
+                } else {
+                    valueField.prop('disabled', false);
+                    
+                    // Cambiar el tipo de input según la selección
+                    if ($(this).val() === 'email') {
+                        valueField.attr('type', 'email').attr('placeholder', 'otro@correo.com');
+                    } else if ($(this).val() === 'whatsapp' || $(this).val() === 'telefono') {
+                        valueField.attr('type', 'tel').attr('placeholder', 'Número con código de país');
+                    } else {
+                        valueField.attr('type', 'text').attr('placeholder', 'Información de contacto');
+                    }
+                }
+            });
+            
+            // Agregar nuevo campo de contacto
+            $('#add-contact').click(function() {
+                const newField = `
+                <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+                    <div class="md:w-1/4">
+                        <select name="contact_type_${contactCounter}" class="input-field contact-type">
+                            <option value="">Tipo de contacto</option>
+                            <option value="email">Email</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="telefono">Teléfono</option>
+                        </select>
+                    </div>
+                    <div class="md:w-3/4 flex">
+                        <input type="text" name="contact_value_${contactCounter}" class="input-field contact-value" placeholder="Información de contacto" disabled>
+                        <button type="button" class="remove-contact ml-2 text-red-500" title="Eliminar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>`;
+                
+                $('#contact-fields').append(newField);
+                contactCounter++;
+            });
+            
+            // Eliminar campo de contacto
+            $(document).on('click', '.remove-contact', function() {
+                $(this).closest('.flex.flex-col.md\:flex-row').remove();
             });
             
             // Form submission
@@ -387,26 +525,46 @@
                 e.preventDefault();
                 
                 const name = $('#name').val();
-                const email = $('#email').val();
-                const whatsapp = $('#whatsapp').val();
                 const message = $('#message').val();
                 const plan = $('#plan-selected').val();
                 
+                // Recopilar todos los datos de contacto
                 const contactData = {
-                    plan: plan,
-                    whatsapp: whatsapp
+                    plan: plan
                 };
+                
+                // Recorrer todos los campos de contacto adicionales (empezando desde i=1)
+                for (let i = 1; i < contactCounter; i++) {
+                    const typeField = $(`[name="contact_type_${i}"]`);
+                    const valueField = $(`[name="contact_value_${i}"]`);
+                    
+                    // Si el tipo y valor están completos
+                    if (typeField.length && valueField.length && typeField.val() && valueField.val()) {
+                        const type = typeField.val();
+                        const value = valueField.val();
+                        
+                        // Agregar al objeto contactData con el formato type_i
+                        contactData[`${type}_${i-1}`] = value; // Usamos i-1 para que empiece desde 0
+                    }
+                }
                 
                 // Current date in ISO format
                 const currentDate = new Date().toISOString();
                 
+                // El email principal se usa en el campo email del API
                 const formData = {
                     name: name,
-                    email: email,
+                    email: $('#email').val(),
                     contact: JSON.stringify(contactData),
                     message: message,
                     date: currentDate
                 };
+                
+                // Bloquear el botón de envío y cambiar su apariencia
+                const submitButton = $(this).find('button[type="submit"]');
+                submitButton.prop('disabled', true)
+                           .addClass('opacity-50 cursor-not-allowed')
+                           .html('Enviando...');
                 
                 // Show loading state
                 $('#form-message').removeClass('hidden text-green-600 text-red-600').addClass('text-gray-700').html('Enviando...');
@@ -420,8 +578,24 @@
                         // Clear form
                         $('#contact-form')[0].reset();
                         
+                        // Restablecer campos de contacto adicionales
+                        $('#contact-fields').find('.flex.flex-col.md\:flex-row').each(function(index) {
+                            if (index > 1) { // Mantener el email principal y el primer campo adicional
+                                $(this).remove();
+                            }
+                        });
+                        contactCounter = 2;
+                        
+                        // Deshabilitar campo de valor del primer campo adicional
+                        $('[name="contact_value_1"]').prop('disabled', true);
+                        
                         // Show success message
                         $('#form-message').removeClass('text-gray-700 text-red-600').addClass('text-green-600').html('¡Gracias! Nos pondremos en contacto contigo pronto.');
+                        
+                        // Restaurar el botón de envío
+                        submitButton.prop('disabled', false)
+                                   .removeClass('opacity-50 cursor-not-allowed')
+                                   .html('Enviar Solicitud');
                         
                         // Hide message after 5 seconds
                         setTimeout(function() {
@@ -433,6 +607,11 @@
                         
                         // Show error message
                         $('#form-message').removeClass('text-gray-700 text-green-600').addClass('text-red-600').html('Hubo un error al enviar tu solicitud. Por favor, intenta nuevamente.');
+                        
+                        // Restaurar el botón de envío
+                        submitButton.prop('disabled', false)
+                                   .removeClass('opacity-50 cursor-not-allowed')
+                                   .html('Enviar Solicitud');
                     }
                 });
             });
