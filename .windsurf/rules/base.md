@@ -22,7 +22,9 @@ Objetivo:
     "date": "2022-01-01 10:00:00.123Z"
 };
 
-Diseño: colores tenue elegantes: rojo, azul, color fuerte negro.
+Diseño:
+- colores principales: rojo, azul en tonos tenue
+- color de resltado: negro, azul fuerte
 - fondo claro, pero no blanco
 - elegante minimalista, bordes redondeados grande
 - botones enormes pero elegantes
