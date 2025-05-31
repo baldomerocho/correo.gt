@@ -221,128 +221,116 @@
             <p class="text-xl text-gray-700 text-center mb-8 max-w-3xl mx-auto">
                 Elige el plan que mejor se adapte a tus necesidades. Todos incluyen soporte técnico y configuración asistida.
             </p>
-            <div class="bg-white p-6 rounded-2xl shadow-md mb-16 max-w-3xl mx-auto">
-                <h3 class="text-2xl font-bold text-dark mb-2 text-center">Tu correo profesional</h3>
+            <div class="bg-white p-8 rounded-2xl shadow-md mb-16 max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-dark mb-4">Imagina tu correo profesional</h3>
+                    <p class="text-lg text-gray-700 mb-6">Descubre cómo se vería tu correo personalizado en firmas y tarjetas de presentación</p>
+                </div>
                 
-                <!-- Ejemplos simplificados de correos personalizados -->
-                <div class="flex justify-center mb-6">
-                    <div class="inline-flex items-center bg-gray-50 py-2 px-4 rounded-full">
-                        <svg class="h-5 w-5 text-primary mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span class="font-bold text-lg">tu@tuempresa.com</span>
+                <div class="text-center mb-6">
+                    <p class="text-lg text-gray-700">Visualiza cómo se vería tu correo profesional en diferentes formatos</p>
+                </div>
+                
+                <!-- Pestañas de visualización -->
+                <div id="preview-tabs" class="mb-6 border-b border-gray-200 hidden">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+                        <li class="mr-2">
+                            <a href="#" class="preview-tab inline-block p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 rounded-t-lg" data-tab="email">Correo</a>
+                        </li>
+                        <li class="mr-2">
+                            <a href="#" class="preview-tab active inline-block p-4 border-b-2 border-primary text-primary rounded-t-lg" data-tab="signature">Firma de correo</a>
+                        </li>
+                        <li class="mr-2">
+                            <a href="#" class="preview-tab inline-block p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 rounded-t-lg" data-tab="card">Tarjeta de presentación</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contenido de las pestañas -->
+                <div class="preview-content-wrapper hidden ">
+                    <!-- Vista de correo -->
+                    <div id="preview-email" class="preview-content hidden">
+                        <div class="bg-white p-6 rounded-xl border-2 border-gray-300 shadow-md">
+                            <p class="text-lg text-gray-500 mb-2">Tu correo profesional:</p>
+                            <div id="email-preview" class="text-2xl font-bold text-dark overflow-auto">
+                                <span id="preview-user">usuario</span>@<span id="preview-domain">dominio.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vista de firma de correo -->
+                    <div id="preview-signature" class="preview-content block">
+                        <div class="bg-white p-6 rounded-xl border-2 border-gray-300 shadow-md">
+                            <div class="border-l-4 border-primary pl-4 py-2">
+                                <p class="text-lg font-bold mb-1"><span id="signature-name">Tu Nombre</span></p>
+                                <p class="text-gray-700 mb-1"><span id="signature-position">Cargo / Departamento</span></p>
+                                <p class="text-gray-700 mb-3"><span id="signature-company">Tu Empresa</span></p>
+                                <div class="flex items-center mb-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <span class="text-primary"><span id="signature-email"><span id="sig-user">usuario</span>@<span id="sig-domain">dominio.com</span></span></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="text-gray-700"><span id="signature-website">www.<span id="sig-domain-site">dominio.com</span></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vista de tarjeta de presentación -->
+                    <div id="preview-card" class="preview-content hidden">
+                        <div class="bg-white p-6 rounded-xl border-2 border-gray-300 shadow-md">
+                            <div class="bg-gradient-to-r from-primary to-secondary p-6 rounded-lg text-white shadow-lg max-w-[450px]">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-1"><span id="card-name">Tu Nombre</span></h3>
+                                        <p class="text-white opacity-90 mb-4"><span id="card-position">Cargo / Departamento</span></p>
+                                        <p class="text-xl font-bold mb-4"><span id="card-company">Tu Empresa</span></p>
+                                        
+                                        <div class="flex items-center mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                            </svg>
+                                            <span id="card-email"><span id="card-user">usuario</span>@<span id="card-domain">dominio.com</span></span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <span id="card-website">www.<span id="card-domain-site">dominio.com</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-3xl font-bold">LOGO</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Visualizador de correo personalizado -->
-                <div class="border-t border-gray-200 pt-8">
-                    <h4 class="text-xl font-bold text-dark mb-4 text-center">Visualiza tu correo personalizado</h4>
-                    <p class="text-center text-gray-700 mb-6">Ingresa tu nombre y dominio para ver cómo se vería tu correo profesional</p>
-                    
-                    <div class="max-w-xl mx-auto">
-                        <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0 mb-6">
-                            <div class="md:w-1/2">
-                                <label for="email-user" class="block text-sm font-medium text-gray-700 mb-1">Tu nombre o departamento</label>
-                                <input type="text" id="email-user" class="input-field" placeholder="contacto, ventas, tu.nombre">
-                            </div>
-                            <div class="md:w-1/2">
-                                <label for="email-domain" class="block text-sm font-medium text-gray-700 mb-1">Tu dominio</label>
-                                <input type="text" id="email-domain" class="input-field" placeholder="tuempresa.com">
-                            </div>
-                        </div>
-                        
-                        <!-- Pestañas de visualización -->
-                        <div class="mb-6 border-b border-gray-200">
-                            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
-                                <li class="mr-2">
-                                    <a href="#" class="preview-tab inline-block p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 rounded-t-lg" data-tab="email">Correo</a>
-                                </li>
-                                <li class="mr-2">
-                                    <a href="#" class="preview-tab active inline-block p-4 border-b-2 border-primary text-primary rounded-t-lg" data-tab="signature">Firma de correo</a>
-                                </li>
-                                <li class="mr-2">
-                                    <a href="#" class="preview-tab inline-block p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 rounded-t-lg" data-tab="card">Tarjeta de presentación</a>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Contenido de las pestañas -->
-                        <div class="preview-content-wrapper">
-                            <!-- Vista de correo -->
-                            <div id="preview-email" class="preview-content hidden">
-                                <div class="bg-white p-6 rounded-xl border-2 border-gray-300 shadow-md">
-                                    <p class="text-lg text-gray-500 mb-2">Tu correo profesional:</p>
-                                    <div id="email-preview" class="text-2xl font-bold text-dark overflow-auto">
-                                        <span id="preview-user">usuario</span>@<span id="preview-domain">dominio.com</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Vista de firma de correo -->
-                            <div id="preview-signature" class="preview-content block">
-                                <div class="bg-white p-6 rounded-xl border-2 border-gray-300 shadow-md">
-                                    <div class="border-l-4 border-primary pl-4 py-2">
-                                        <p class="text-lg font-bold mb-1"><span id="signature-name">Tu Nombre</span></p>
-                                        <p class="text-gray-700 mb-1"><span id="signature-position">Cargo / Departamento</span></p>
-                                        <p class="text-gray-700 mb-3"><span id="signature-company">Tu Empresa</span></p>
-                                        <div class="flex items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                            </svg>
-                                            <span class="text-primary"><span id="signature-email"><span id="sig-user">usuario</span>@<span id="sig-domain">dominio.com</span></span></span>
-                                        </div>
-                                        <div class="flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            <span class="text-gray-700"><span id="signature-website">www.<span id="sig-domain-site">dominio.com</span></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Vista de tarjeta de presentación -->
-                            <div id="preview-card" class="preview-content hidden">
-                                <div class="bg-white p-6 rounded-xl border-2 border-gray-300 shadow-md">
-                                    <div class="bg-gradient-to-r from-primary to-secondary p-6 rounded-lg text-white shadow-lg">
-                                        <div class="flex justify-between items-start">
-                                            <div>
-                                                <h3 class="text-2xl font-bold mb-1"><span id="card-name">Tu Nombre</span></h3>
-                                                <p class="text-white opacity-90 mb-4"><span id="card-position">Cargo / Departamento</span></p>
-                                                <p class="text-xl font-bold mb-4"><span id="card-company">Tu Empresa</span></p>
-                                                
-                                                <div class="flex items-center mb-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                                    </svg>
-                                                    <span id="card-email"><span id="card-user">usuario</span>@<span id="card-domain">dominio.com</span></span>
-                                                </div>
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                    <span id="card-website">www.<span id="card-domain-site">dominio.com</span></span>
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <div class="text-3xl font-bold">LOGO</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 text-center">
-                            <button id="love-button" class="bg-white hover:bg-gray-100 text-primary py-3 px-6 rounded-full border-2 border-primary hover:border-red-600 transition-all flex items-center mx-auto shadow-md hover:shadow-lg transform hover:scale-105">
+                <div class="mt-8 text-center">
+                    <div class="flex flex-row justify-center space-x-4">
+                        <button id="open-email-modal" class="bg-primary hover:bg-red-600 text-white py-3 px-6 rounded-xl transition-all flex items-center shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                            <span class="font-bold text-lg">Imaginar</span>
+                        </button>
+                        <div id="love-button-container" class="hidden">
+                            <button id="love-button" class="bg-white hover:bg-gray-100 text-primary py-3 px-6 rounded-xl border-2 border-primary hover:border-red-600 transition-all flex items-center shadow-md hover:shadow-lg transform hover:scale-105">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-500" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
                                 </svg>
-                                <span class="font-bold text-lg">Me encanta</span>
+                                <span class="font-bold">Me encanta</span>
                             </button>
-                            <p id="love-message" class="text-primary mt-2 hidden">¡Genial! Ahora elige tu plan ideal</p>
                         </div>
                     </div>
+                    <p id="love-message" class="text-primary mt-2 hidden">¡Genial! Ahora elige tu plan ideal</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -551,9 +539,153 @@
         </div>
     </footer>
 
+    <!-- Modal para visualizar correo -->
+    <div id="email-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-dark">Imagina tu correo profesional</h3>
+                <button id="close-email-modal" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mb-8">
+                <p class="text-lg text-gray-700 mb-6">Ingresa tu nombre y dominio para ver cómo se vería tu correo profesional</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label for="modal-email-user" class="block text-sm font-medium text-gray-700 mb-1">Tu nombre o departamento</label>
+                        <input type="text" id="modal-email-user" class="input-field" placeholder="contacto, ventas, tu.nombre">
+                    </div>
+                    <div>
+                        <label for="modal-email-domain" class="block text-sm font-medium text-gray-700 mb-1">Tu dominio</label>
+                        <input type="text" id="modal-email-domain" class="input-field" placeholder="tuempresa.com">
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="mt-8 text-center">
+                <button id="modal-imagine-button" class="bg-primary hover:bg-red-600 text-white py-3 px-6 rounded-xl transition-all flex items-center mx-auto shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="font-bold">Finalizar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para formulario completo -->
+    <div id="email-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay de fondo -->
+            <div class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75"></div>
+            
+            <!-- Contenido del modal -->
+            <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-2xl shadow-xl sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                <div class="px-6 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-dark">Personaliza tu correo profesional</h3>
+                        <button id="close-email-modal" class="text-gray-500 hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <form id="email-form" class="space-y-4">
+                            <!-- Información personal -->
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-3 text-dark">Información personal</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="modal-name" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
+                                        <input type="text" id="modal-name" class="input-field" placeholder="Juan Pérez">
+                                    </div>
+                                    <div>
+                                        <label for="modal-position" class="block text-sm font-medium text-gray-700 mb-1">Cargo / Departamento</label>
+                                        <input type="text" id="modal-position" class="input-field" placeholder="Director Comercial">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Información de la empresa -->
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-3 text-dark">Información de la empresa</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="modal-company" class="block text-sm font-medium text-gray-700 mb-1">Nombre de la empresa</label>
+                                        <input type="text" id="modal-company" class="input-field" placeholder="Mi Empresa S.A.">
+                                    </div>
+                                    <div>
+                                        <label for="modal-email-domain" class="block text-sm font-medium text-gray-700 mb-1">Dominio de la empresa</label>
+                                        <input type="text" id="modal-email-domain" class="input-field" placeholder="miempresa.com">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Información de contacto -->
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-3 text-dark">Información de contacto</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="modal-email-user" class="block text-sm font-medium text-gray-700 mb-1">Usuario de correo</label>
+                                        <input type="text" id="modal-email-user" class="input-field" placeholder="juan.perez">
+                                    </div>
+                                    <div>
+                                        <label for="modal-phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono (opcional)</label>
+                                        <input type="text" id="modal-phone" class="input-field" placeholder="+502 5555-5555">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Información adicional -->
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-3 text-dark">Información adicional</h4>
+                                <div>
+                                    <label for="modal-message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje o comentario (opcional)</label>
+                                    <textarea id="modal-message" rows="3" class="input-field w-full" placeholder="Cuéntanos más sobre tus necesidades..."></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-center">
+                        <button id="modal-submit-button" class="bg-primary hover:bg-red-600 text-white py-3 px-8 rounded-xl transition-all flex items-center mx-auto shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="font-bold">Solicitar información</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
         $(document).ready(function() {
+            // Funcionalidad para el botón "Finalizar" en el modal
+            $('#modal-imagine-button').click(function() {
+                // Efecto de animación en el botón
+                $(this).addClass('scale-110');
+                setTimeout(function() {
+                    $('#modal-imagine-button').removeClass('scale-110');
+                    $('.preview-content-wrapper').removeClass('hidden');
+                    $('#preview-tabs').removeClass('hidden');
+                }, 300);
+                
+                // Cerrar el modal usando la función closeModal
+                setTimeout(function() {
+                    closeModal();
+                }, 500);
+            });
+            
             // Header compacto al hacer scroll
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 50) {
@@ -633,6 +765,115 @@
                 $('#card-company').text(company.charAt(0).toUpperCase() + company.slice(1));
             });
             
+            // Funcionalidad para actualizar la previsualización desde el modal
+            $('#modal-email-user, #modal-email-domain, #modal-name, #modal-position, #modal-company').on('input', function() {
+                const user = $('#modal-email-user').val() || 'usuario';
+                const domain = $('#modal-email-domain').val() || 'dominio.com';
+                const company = $('#modal-company').val() || domain.split('.')[0];
+                const name = $('#modal-name').val() || 'Tu Nombre';
+                const position = $('#modal-position').val() || 'Cargo / Departamento';
+                
+                // Actualizar todas las vistas en el modal
+                updatePreviewContent(user, domain, company, name, position);
+                
+                // Mostrar el botón "Me encanta" solo cuando el usuario haya personalizado algo
+                if (user !== 'usuario' || domain !== 'dominio.com' || name !== 'Tu Nombre' || position !== 'Cargo / Departamento') {
+                    $('#love-button-container').removeClass('hidden');
+                } else {
+                    $('#love-button-container').addClass('hidden');
+                }
+            });
+            
+            // Función para actualizar el contenido de la previsualización
+            function updatePreviewContent(user, domain, company, name, position) {
+                // Vista de correo simple
+                $('#preview-user').text(user);
+                $('#modal-preview-user').text(user);
+                $('#preview-domain').text(domain);
+                $('#modal-preview-domain').text(domain);
+                
+                // Vista de firma de correo
+                $('#sig-user').text(user);
+                $('#modal-sig-user').text(user);
+                $('#sig-domain').text(domain);
+                $('#modal-sig-domain').text(domain);
+                $('#sig-domain-site').text(domain);
+                $('#modal-sig-domain-site').text(domain);
+                $('#signature-company').text(company.charAt(0).toUpperCase() + company.slice(1));
+                $('#modal-signature-company').text(company.charAt(0).toUpperCase() + company.slice(1));
+                $('#signature-name').text(name);
+                $('#modal-signature-name').text(name);
+                $('#signature-position').text(position);
+                $('#modal-signature-position').text(position);
+                
+                // Vista de tarjeta
+                $('#card-user').text(user);
+                $('#modal-card-user').text(user);
+                $('#card-domain').text(domain);
+                $('#modal-card-domain').text(domain);
+                $('#card-domain-site').text(domain);
+                $('#modal-card-domain-site').text(domain);
+                $('#card-company').text(company.charAt(0).toUpperCase() + company.slice(1));
+                $('#modal-card-company').text(company.charAt(0).toUpperCase() + company.slice(1));
+                $('#card-name').text(name);
+                $('#modal-card-name').text(name);
+                $('#card-position').text(position);
+                $('#modal-card-position').text(position);
+            }
+            
+            // Funcionalidad para cambiar entre pestañas en la previsualización principal
+            $('.preview-tab').click(function(e) {
+                e.preventDefault();
+                const tab = $(this).data('tab');
+                
+                // Cambiar pestaña activa
+                $('.preview-tab').removeClass('active border-primary text-primary').addClass('border-transparent');
+                $(this).addClass('active border-primary text-primary').removeClass('border-transparent');
+                
+                // Mostrar contenido correspondiente
+                $('.preview-content').removeClass('block').addClass('hidden');
+                $(`#preview-${tab}`).removeClass('hidden').addClass('block');
+            });
+            
+            // Funcionalidad para abrir y cerrar el modal
+            $('#open-email-modal').click(function() {
+                // Mostrar el modal
+                $('#email-modal').removeClass('hidden');
+                $('body').addClass('overflow-hidden'); // Evitar scroll en el fondo
+            });
+            
+            function closeModal() {
+                // Obtener los valores actuales del modal
+                const user = $('#modal-email-user').val() || 'usuario';
+                const domain = $('#modal-email-domain').val() || 'dominio.com';
+                const company = $('#modal-company').val() || domain.split('.')[0];
+                const name = $('#modal-name').val() || 'Tu Nombre';
+                const position = $('#modal-position').val() || 'Cargo / Departamento';
+                
+                // Actualizar la previsualización en la página principal
+                updatePreviewContent(user, domain, company, name, position);
+                
+                // Mostrar el botón "Me encanta" si se ha personalizado algo
+                if (user !== 'usuario' || domain !== 'dominio.com' || name !== 'Tu Nombre' || position !== 'Cargo / Departamento') {
+                    $('#love-button-container').removeClass('hidden');
+                }
+                
+                // Cerrar el modal
+                $('#email-modal').addClass('hidden');
+                $('body').removeClass('overflow-hidden');
+            }
+            
+            $('#close-email-modal').click(function() {
+                closeModal();
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            $('#email-modal').click(function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
             // Funcionalidad para el botón "Me encanta"
             $('#love-button').click(function() {
                 // Mostrar mensaje
@@ -655,6 +896,80 @@
                 setTimeout(function() {
                     $('#love-message').addClass('hidden');
                 }, 3000);
+            });
+            
+            // Funcionalidad para el botón de envío del formulario
+            $('#modal-submit-button').click(function() {
+                // Deshabilitar el botón para evitar múltiples envíos
+                $(this).prop('disabled', true).addClass('opacity-75');
+                $(this).html('<svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Enviando...');
+                
+                // Obtener los valores actuales para actualizar la previsualización
+                const user = $('#modal-email-user').val() || 'usuario';
+                const domain = $('#modal-email-domain').val() || 'dominio.com';
+                const company = $('#modal-company').val() || domain.split('.')[0];
+                const name = $('#modal-name').val() || 'Tu Nombre';
+                const position = $('#modal-position').val() || 'Cargo / Departamento';
+                
+                // Recopilar datos del formulario
+                const formData = {
+                    name: name,
+                    email: `${user}@${domain}`,
+                    contact: JSON.stringify({
+                        position: position,
+                        company: company,
+                        phone: $('#modal-phone').val() || 'No especificado'
+                    }),
+                    message: $('#modal-message').val() || 'No especificado',
+                    date: new Date().toISOString()
+                };
+                
+                // Enviar datos a la API
+                $.ajax({
+                    url: 'https://power.pockethost.io/api/collections/leads/records',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
+                        // Mostrar mensaje de éxito
+                        $('#modal-submit-button').html('<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><span class="font-bold">¡Enviado con éxito!</span>');
+                        
+                        // Actualizar la previsualización en la página principal
+                        updatePreviewContent(user, domain, company, name, position);
+                        
+                        // Mostrar el botón "Me encanta" si se ha personalizado algo
+                        if (user !== 'usuario' || domain !== 'dominio.com' || name !== 'Tu Nombre' || position !== 'Cargo / Departamento') {
+                            $('#love-button-container').removeClass('hidden');
+                        }
+                        
+                        // Cerrar el modal después de un tiempo
+                        setTimeout(function() {
+                            $('#email-modal').addClass('hidden');
+                            $('body').removeClass('overflow-hidden');
+                            
+                            // Desplazamiento suave a la sección de planes
+                            $('html, body').animate({
+                                scrollTop: $('#planes .grid.grid-cols-1.md\\:grid-cols-3').offset().top - 100
+                            }, 400);
+                            
+                            // Restablecer el botón después de un tiempo
+                            setTimeout(function() {
+                                $('#modal-submit-button').prop('disabled', false).removeClass('opacity-75');
+                                $('#modal-submit-button').html('<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><span class="font-bold">Solicitar información</span>');
+                            }, 1000);
+                        }, 1500);
+                    },
+                    error: function(error) {
+                        // Mostrar mensaje de error
+                        $('#modal-submit-button').html('<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg><span class="font-bold">Error al enviar</span>');
+                        
+                        // Restablecer el botón después de un tiempo
+                        setTimeout(function() {
+                            $('#modal-submit-button').prop('disabled', false).removeClass('opacity-75');
+                            $('#modal-submit-button').html('<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><span class="font-bold">Intentar nuevamente</span>');
+                        }, 2000);
+                    }
+                });
             });
             
             // Variables para el manejo de campos de contacto
